@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Store {
+  id              Int               @id @default(autoincrement())
+  name            String            @unique
+  address         String
+  isActive        Boolean           @default(true)
+  orders          Orders[]
+  productCategory ProductCategory[]
+}
+
+model ProductCategory {
+  id       Int       @id @default(autoincrement())
+  name     String
+  storeId  Int
+  store    Store     @relation(fields: [storeId], references: [id])
+  isActive Boolean   @default(true)
+  products Product[]
+}
+
+model Product {
+  id                Int             @id @default(autoincrement())
+  name              String
+  productCategoryId Int
+  price             Int
+  orders            OrderDetails[]
+  productCategory   ProductCategory @relation(fields: [productCategoryId], references: [id])
+  isActive          Boolean         @default(true)
+}
+
+model StoreUser {
+  id       Int                 @id @default(autoincrement())
+  email    String              @unique
+  isAdmin  Boolean             @default(false)
+  password StoreUserPassword[]
+}
+
+model StoreUserPassword {
+  id       Int       @id @default(autoincrement())
+  userId   Int
+  password String
+  user     StoreUser @relation(fields: [userId], references: [id])
+}
+
+model RetailGroceryStore {
+  id       Int      @id @default(autoincrement())
+  name     String
+  address  String
+  orders   Orders[]
+  isActive Boolean  @default(true)
+}
+
+model Orders {
+  id            Int                @id @default(autoincrement())
+  name          String
+  createdAt     DateTime           @default(now())
+  orderStatusId Int
+  description   String?
+  senderId      Int
+  recieverId    Int
+  totalAmount   Int?
+  orderDetails  OrderDetails[]
+  orderStatus   orderStatus        @relation(fields: [orderStatusId], references: [id])
+  reciever      RetailGroceryStore @relation(fields: [recieverId], references: [id])
+  sender        Store              @relation(fields: [senderId], references: [id])
+}
+
+model OrderDetails {
+  id            Int     @id @default(autoincrement())
+  productId     Int
+  orderId       Int?
+  orderQuantity Int
+  return        Int?
+  stock         Int
+  order         Orders? @relation(fields: [orderId], references: [id])
+  product       Product @relation(fields: [productId], references: [id])
+}
+
+model orderStatus {
+  id     Int      @id @default(autoincrement())
+  name   String
+  orders Orders[]
+}

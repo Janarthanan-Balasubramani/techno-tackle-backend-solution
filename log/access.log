@@ -1,0 +1,7 @@
+::1 - - [08/May/2024:11:51:03 +0000] "POST /order HTTP/1.1" 200 70 "-" "PostmanRuntime/7.37.3"
+::1 - - [08/May/2024:12:14:21 +0000] "POST /order HTTP/1.1" 200 70 "-" "PostmanRuntime/7.37.3"
+::1 - - [08/May/2024:12:17:15 +0000] "POST /order HTTP/1.1" 200 70 "-" "PostmanRuntime/7.37.3"
+::1 - - [08/May/2024:12:17:38 +0000] "POST /order HTTP/1.1" 200 70 "-" "PostmanRuntime/7.37.3"
+::1 - - [08/May/2024:12:19:34 +0000] "GET /store HTTP/1.1" 404 70 "-" "PostmanRuntime/7.37.3"
+::1 - - [08/May/2024:12:25:07 +0000] "GET /store HTTP/1.1" 200 279 "-" "PostmanRuntime/7.37.3"
+::1 - - [08/May/2024:12:39:05 +0000] "GET /api/generate-pdf HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
