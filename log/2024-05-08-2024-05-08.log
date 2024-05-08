@@ -32,3 +32,10 @@
 {"level":"info","message":"POST /order undefined"}
 {"level":"info","message":"GET /order/orderDetails?orderId=13 undefined"}
 {"level":"info","message":"GET /order/orderDetails?orderId=13 undefined"}
+{"level":"info","message":"GET /order/orderDetails/pdf?orderId=13 undefined"}
+{"level":"info","message":"GET /order/orderDetails/pdf?orderId=13 undefined"}
+{"level":"info","message":"GET /favicon.ico undefined"}
+{"level":"info","message":"POST /store/gorceryStore undefined"}
+{"level":"info","message":"POST /store/groceryStore undefined"}
+{"level":"info","message":"POST /product undefined"}
+{"level":"info","message":"POST /product undefined"}

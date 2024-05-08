@@ -34,7 +34,9 @@ const deleteStore = async(store:any)=>{
 
  return await StoreRepository.softDeleteStore(store)
 }
-
-const PostService = { getStores, createStore,updateStore ,deleteStore};
+const createGroceryStore = async(groceryStore:any)=>{
+  return await StoreRepository.createGroceryStore(groceryStore)
+}
+const PostService = { getStores, createStore,updateStore ,deleteStore,createGroceryStore};
 
 export default PostService;

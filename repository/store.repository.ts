@@ -70,7 +70,16 @@ const count = await prisma.store.count({
 return count>0
 }
 
+const createGroceryStore = async(groceryStore:any) =>{
+
+  await prisma.retailGroceryStore.create({
+    data:{
+      address:groceryStore.address,
+      name:groceryStore.name
+    }
+  })
+}
 const PostRepository = { getPosts, createStore,updateStore,
-  checkIsStoreNameAlreadyTaken,checkIsStoreNameAlreadyTakenWithDifferentId,softDeleteStore,isStoreExistWIthId };
+  checkIsStoreNameAlreadyTaken,checkIsStoreNameAlreadyTakenWithDifferentId,softDeleteStore,isStoreExistWIthId ,createGroceryStore};
 
 export default PostRepository;

@@ -27,6 +27,11 @@ const deleteStore = asyncHandler(async(req: Request, res: Response)=>{
   ApiResponse.send(res,200,"Store deleted Successfully")
 
 })
-const StoreController = { getStores, createStore,updateStore ,deleteStore};
+const createGroceryStore = asyncHandler(async(req: Request, res: Response)=>{
+await StoreService.createGroceryStore(req.body)
+ApiResponse.send(res,200,"grocery Store created Successfully")
+
+})
+const StoreController = { getStores, createStore,updateStore ,deleteStore,createGroceryStore};
 
 export default StoreController;

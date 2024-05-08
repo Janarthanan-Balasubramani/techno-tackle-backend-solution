@@ -61,5 +61,5 @@ const fetchOrderDetails=  asyncHandler(async(req:Request,res:Response)=>{
    const data  = await OrderService.fetchOrderDetails(req.query.orderId)
   ApiResponse.send(res,HttpStatus.OK.code,"Order details fetched successfully",data)
 });
-const OrderController = {orderCreate,fetchOrders,fetchOrderDetails}
+const OrderController = {orderCreate,fetchOrders,fetchOrderDetails,fetchOrderDetailsPDF}
 export default OrderController
