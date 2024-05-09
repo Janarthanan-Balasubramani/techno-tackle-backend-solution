@@ -18,9 +18,9 @@ const logger = winston.createLogger({
       datePattern: 'YYYY-MM-DD',
       zippedArchive: true,
       maxSize: '20m',
-      maxFiles: '14d'
-    })
-  ]
+      maxFiles: '14d',
+    }),
+  ],
 });
 
 const app = express();
@@ -33,7 +33,7 @@ app.use((req: Request, res, next) => {
 // setup rate limiter: maximum of 30 requests per minute
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 30 // limit each IP to 30 requests per windowMs
+  max: 30, // limit each IP to 30 requests per windowMs
 });
 
 //  apply to all requests
@@ -62,7 +62,5 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
     message: error.message,
   });
 });
-
-// Add more middleware and routes as needed
 
 export default app;
