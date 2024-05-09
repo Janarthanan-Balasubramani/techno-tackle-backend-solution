@@ -5,81 +5,86 @@ const getPosts = async () => {
   return await prisma.store.findMany();
 };
 
-const createStore  = async (store:any ) => {
+const createStore = async (store: any) => {
   return await prisma.store.create({ data: store });
 };
 
-
-const updateStore = async(store:any)=>{
+const updateStore = async (store: any) => {
   return await prisma.store.update({
-    where:{
-      id:+store.id,
-      
+    where: {
+      id: +store.id,
     },
-    data:{
-      address:store.address,
-      name:store.name
-    }
-  })
-}
+    data: {
+      address: store.address,
+      name: store.name,
+    },
+  });
+};
 
-
-const checkIsStoreNameAlreadyTaken  = async(store:any): Promise<Boolean> =>{
-const count  = await prisma.store.count({
-  where:{
-    name:{
-      equals:store.name
-    }
-  }
-})
-return count>0
-}
-
-const checkIsStoreNameAlreadyTakenWithDifferentId = async(store:any):Promise<Boolean>=>{
-  const count  = await prisma.store.count({
-    where:{
-      id:{
-        not:+store.id
+const checkIsStoreNameAlreadyTaken = async (store: any): Promise<Boolean> => {
+  const count = await prisma.store.count({
+    where: {
+      name: {
+        equals: store.name,
       },
-      name:{
-        equals:store.name
-      }
-    }
-  })
-  return count>0
-}
-
-const softDeleteStore  = async(store:any)=>{
-  await prisma.store.update({
-    where:{
-      id:+store.id
     },
-    data:{
-      isActive:false
-    }
-  })
-}
+  });
+  return count > 0;
+};
 
-const isStoreExistWIthId = async(store:any) :Promise<Boolean>=>{
-const count = await prisma.store.count({
-  where:{
-    id:+store.id,
-    
-  }
-})
-return count>0
-}
+const checkIsStoreNameAlreadyTakenWithDifferentId = async (
+  store: any,
+): Promise<Boolean> => {
+  const count = await prisma.store.count({
+    where: {
+      id: {
+        not: +store.id,
+      },
+      name: {
+        equals: store.name,
+      },
+    },
+  });
+  return count > 0;
+};
 
-const createGroceryStore = async(groceryStore:any) =>{
+const softDeleteStore = async (store: any) => {
+  await prisma.store.update({
+    where: {
+      id: +store.id,
+    },
+    data: {
+      isActive: false,
+    },
+  });
+};
 
+const isStoreExistWIthId = async (store: any): Promise<Boolean> => {
+  const count = await prisma.store.count({
+    where: {
+      id: +store.id,
+    },
+  });
+  return count > 0;
+};
+
+const createGroceryStore = async (groceryStore: any) => {
   await prisma.retailGroceryStore.create({
-    data:{
-      address:groceryStore.address,
-      name:groceryStore.name
-    }
-  })
-}
-const PostRepository = { getPosts, createStore,updateStore,
-  checkIsStoreNameAlreadyTaken,checkIsStoreNameAlreadyTakenWithDifferentId,softDeleteStore,isStoreExistWIthId ,createGroceryStore};
+    data: {
+      address: groceryStore.address,
+      name: groceryStore.name,
+    },
+  });
+};
+const PostRepository = {
+  getPosts,
+  createStore,
+  updateStore,
+  checkIsStoreNameAlreadyTaken,
+  checkIsStoreNameAlreadyTakenWithDifferentId,
+  softDeleteStore,
+  isStoreExistWIthId,
+  createGroceryStore,
+};
 
 export default PostRepository;

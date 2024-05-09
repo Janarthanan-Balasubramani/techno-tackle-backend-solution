@@ -4,34 +4,38 @@ import ApiResponse from '../utils/apiResponse';
 import asyncHandler from '../middleware/asyncHandler';
 import { HttpStatus } from '../utils/httpError';
 
-const getStores =asyncHandler( async (req: Request, res: Response) => {
+const getStores = asyncHandler(async (req: Request, res: Response) => {
   const posts = await StoreService.getStores();
-  ApiResponse.send(res,200,"Store fetched successfully",posts)
+  ApiResponse.send(res, 200, 'Store fetched successfully', posts);
 });
 
 const createStore = asyncHandler(async (req: Request, res: Response) => {
- await StoreService.createStore(req.body);
-  ApiResponse.send(res,HttpStatus.OK.code,"Store created Successfully")
-  return 
+  await StoreService.createStore(req.body);
+  ApiResponse.send(res, HttpStatus.OK.code, 'Store created Successfully');
+  return;
 });
 
-const updateStore = asyncHandler(async(req: Request, res: Response)=>{
- await StoreService.updateStore(req.body)
-ApiResponse.send(res,200,"Store updated Successfully")
-return
+const updateStore = asyncHandler(async (req: Request, res: Response) => {
+  await StoreService.updateStore(req.body);
+  ApiResponse.send(res, 200, 'Store updated Successfully');
+  return;
 });
 
-const deleteStore = asyncHandler(async(req: Request, res: Response)=>{
-  console.log(typeof(req.body.id))
-  const deleteStore = await StoreService.deleteStore(req.body)
-  ApiResponse.send(res,200,"Store deleted Successfully")
-
-})
-const createGroceryStore = asyncHandler(async(req: Request, res: Response)=>{
-await StoreService.createGroceryStore(req.body)
-ApiResponse.send(res,200,"grocery Store created Successfully")
-
-})
-const StoreController = { getStores, createStore,updateStore ,deleteStore,createGroceryStore};
+const deleteStore = asyncHandler(async (req: Request, res: Response) => {
+  console.log(typeof req.body.id);
+  const deleteStore = await StoreService.deleteStore(req.body);
+  ApiResponse.send(res, 200, 'Store deleted Successfully');
+});
+const createGroceryStore = asyncHandler(async (req: Request, res: Response) => {
+  await StoreService.createGroceryStore(req.body);
+  ApiResponse.send(res, 200, 'grocery Store created Successfully');
+});
+const StoreController = {
+  getStores,
+  createStore,
+  updateStore,
+  deleteStore,
+  createGroceryStore,
+};
 
 export default StoreController;
