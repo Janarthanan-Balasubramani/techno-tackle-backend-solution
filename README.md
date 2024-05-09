@@ -40,4 +40,11 @@ we can also delete the products
 
 
 
+Database design can be found in prisma folder 
+
+file name is schema.prisma 
+
+
+
+
 
