@@ -57,3 +57,19 @@ http://localhost:3000/order
 and Every error is handled and thrown with status code
 
 rate limiting is implemented with 30 requests per api for 1 minute
+
+sqlite database with prisma orm is used
+
+for database integrations
+
+application flow is from routes to controller to service layer and to repository layer
+
+controller is used for handling requests and responses
+
+service layer is for handling any business logics
+
+repository layer is for handling the database interactions
+
+routes is called in app.ts file to point out for appropriate routes
+
+middleware is used to validate the input given in the body
